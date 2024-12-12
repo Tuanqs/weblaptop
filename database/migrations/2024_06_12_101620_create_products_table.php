@@ -20,6 +20,7 @@ return new class extends Migration
         $table->decimal('price', 8, 2);
         $table->integer('quantity');
         $table->string('image')->nullable();
+        $table->string('category')->nullable();
         $table->timestamps();
     });
 }

@@ -4,7 +4,7 @@
         <a href="{{ route('admin.dashboard') }}" class="btn btn-nav">Trang chủ Admin</a>
         <a href="{{ route('admin.users.index') }}" class="btn btn-nav">Quản lý Người dùng</a>
         <a href="{{ route('admin.orders.index') }}" class="btn btn-nav">Quản lý đơn hàng</a>
-
+        <a href="{{ route('admin.statistics') }}" class="btn-nav">Thống kê sản phẩm</a>
     </nav>
     <form action="{{ route('logout') }}" method="POST" style="display: inline;">
         @csrf

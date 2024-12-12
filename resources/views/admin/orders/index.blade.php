@@ -38,7 +38,7 @@
                         <td>{{ $order->user->name }}</td>
                         <td>{{ number_format($order->total, 2) }} VND</td>
                         <td>{{ $order->payment_method }}</td>
-                        <td>{{ ucfirst($order->status) }}</td>
+                        <td>{{ ucfirst($order->status_vn) }}</td>
                         <td>{{ $order->created_at->format('d/m/Y') }}</td>
                         <td class="action-buttons">
                             <a href="{{ route('admin.orders.show', $order->id) }}" class="btn btn-view">Xem</a>

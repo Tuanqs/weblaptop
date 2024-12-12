@@ -20,6 +20,10 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',
+        'full_name',
+        'phone',
+        'address'
     ];
 
     /**
@@ -40,4 +44,16 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Get the cart items for the user.
+     */
+    public function cartItems()
+    {
+        return $this->hasMany(CartItem::class);
+    }
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
 }

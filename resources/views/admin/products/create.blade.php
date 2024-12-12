@@ -32,12 +32,25 @@
         <form action="{{ route('admin.products.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
+                <label for="category">Loại sản phẩm</label>
+                <select name="category" id="category" required>
+                    <option value="">Chọn loại sản phẩm</option>
+                    <option value="PC" {{ old('category') == 'PC' ? 'selected' : '' }}>PC</option>
+                    <option value="Laptop" {{ old('category') == 'Laptop' ? 'selected' : '' }}>Laptop</option>
+                    <option value="linhkien" {{ old('category') == 'linhkien' ? 'selected' : '' }}>Linh Kiện</option>
+                </select>
+            </div>
+            <div class="form-group">
                 <label for="name">Tên sản phẩm</label>
                 <input type="text" name="name" id="name" value="{{ old('name') }}" required>
             </div>
             <div class="form-group">
                 <label for="description">Mô tả</label>
                 <textarea name="description" id="description">{{ old('description') }}</textarea>
+            </div>
+            <div class="form-group">
+                <label for="detail">Mô tả chi tiết</label>
+                <textarea name="detail" id="detail">{{ old('detail') }}</textarea>
             </div>
             <div class="form-group">
                 <label for="price">Giá</label>

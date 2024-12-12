@@ -29,14 +29,13 @@ class LoginController extends Controller
             if (Auth::user()->role == 'admin') {
                 return redirect()->intended('/admin/dashboard');
             } else {
-                return redirect()->intended('/user/dashboard');
+                return redirect()->intended('products');
             }
         }
 
         // Thông tin đăng nhập không chính xác
         return back()->withErrors([
-            'email' => 'Thông tin đăng nhập không chính xác.',
-        ]);
+        ])->withInput()->with('error', 'Đăng nhập thất bại! Vui lòng kiểm tra lại thông tin.');
     }
 
     public function logout(Request $request)
@@ -46,6 +45,6 @@ class LoginController extends Controller
         $request->session()->regenerateToken();
 
         // Chuyển hướng về trang đăng nhập sau khi đăng xuất
-        return redirect()->route('login');
+        return redirect()->route('products.index');
     }
 }

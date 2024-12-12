@@ -4,6 +4,7 @@ body {
     margin: 0;
     padding: 20px;
 }
+
 .header {
     display: flex;
     justify-content: space-between;
@@ -23,6 +24,7 @@ body {
 .btn-logout:hover {
     background-color: #c82333;
 }
+
 .container {
     max-width: 1200px; /* Tăng chiều rộng container nếu cần để có đủ không gian */
     margin: 0 auto;
@@ -196,6 +198,87 @@ button.btn-primary:hover {
     .products-table .product-image {
         width: 60px; /* Điều chỉnh kích thước ảnh cho màn hình nhỏ */
         height: 60px;
+    }
+
+    .btn {
+        padding: 8px 12px;
+        font-size: 12px;
+    }
+}
+/* CSS cho bảng quản lý đơn hàng */
+.orders-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.orders-table th, .orders-table td {
+    padding: 15px;
+    border: 1px solid #dddddd;
+    text-align: left;
+    vertical-align: middle;
+}
+
+.orders-table th {
+    background-color: #f7f7f7;
+    font-weight: 500;
+    color: #333;
+    text-align: center; /* Căn giữa văn bản trong tiêu đề */
+}
+
+.orders-table td {
+    vertical-align: top;
+    text-align: center; /* Căn giữa văn bản trong cột */
+}
+
+.orders-table .customer-name {
+    text-align: left; /* Căn trái văn bản trong cột tên khách hàng */
+}
+
+.orders-table .total-price {
+    text-align: right; /* Căn phải văn bản trong cột tổng giá */
+}
+
+.orders-table .action-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+/* Điều chỉnh độ rộng của cột Hành động */
+.orders-table th:nth-child(7), .orders-table td:nth-child(7) {
+    width: 200px; /* Tăng độ rộng cho cột Hành động */
+}
+
+/* Nút hành động */
+.btn-view {
+    background-color: #17a2b8;
+    color: white;
+}
+
+.btn-edit {
+    background-color: #007bff;
+    color: white;
+}
+
+.btn-delete {
+    background-color: #dc3545;
+    color: white;
+}
+
+.btn-view:hover, .btn-edit:hover, .btn-delete:hover {
+    opacity: 0.8;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .orders-table th, .orders-table td {
+        padding: 10px;
+    }
+
+    .orders-table .action-buttons {
+        flex-direction: column;
+        gap: 5px;
     }
 
     .btn {

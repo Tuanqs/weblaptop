@@ -25,6 +25,12 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
 
     // Route DELETE để xóa một sản phẩm
     Route::delete('products/{product}', [ProductController::class, 'destroy'])->name('admin.products.destroy');
+    
+    Route::get('products', [ProductController::class, 'index'])->name('admin.products.index');
+
+
+
+    
 
     // ------------------------ Quản lý Người dùng ------------------------
     // Route GET để hiển thị danh sách người dùng
@@ -48,6 +54,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     // Route DELETE để xóa một người dùng
     Route::delete('users/{user}', [UserController::class, 'destroy'])->name('admin.users.destroy');
 
+
     // ------------------------ Quản lý Đơn hàng ------------------------
     // Route GET để hiển thị danh sách đơn hàng
     Route::get('orders', [OrderController::class, 'index'])->name('admin.orders.index');
@@ -63,4 +70,9 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
 
     // Route DELETE để xóa một đơn hàng
     Route::delete('orders/{order}', [OrderController::class, 'destroy'])->name('admin.orders.destroy');
+
+    Route::get('/statistics', [ProductController::class, 'statistics'])->name('admin.statistics');
+
+
+    
 });

@@ -10,14 +10,17 @@ class OrderController extends Controller
 {
     public function index()
     {
-        // Lấy tất cả các đơn hàng để hiển thị trong danh sách
-        $orders = Order::with('user')->get();
+        $orders = Order::with('user')->get()->map(function ($order) {
+            $order->status_vn = $this->translateStatus($order->status);
+            return $order;
+        });
         return view('admin.orders.index', compact('orders'));
     }
 
     public function show(Order $order)
     {
-        // Hiển thị chi tiết đơn hàng
+        // Thêm trạng thái tiếng Việt vào đơn hàng
+        $order->status_vn = $this->translateStatus($order->status);
         return view('admin.orders.show', compact('order'));
     }
 
@@ -50,5 +53,18 @@ class OrderController extends Controller
         $order->delete();
 
         return redirect()->route('admin.orders.index')->with('success', 'Đơn hàng đã được xóa.');
+    }
+
+    private function translateStatus($status)
+    {
+        $translations = [
+            'pending' => 'Đang chờ xác nhận',
+            'processing' => 'Đang xử lý',
+            'shipped' => 'Đã vận chuyển',
+            'delivered' => 'Đã giao hàng',
+            'paid' => 'Đã thanh toán',
+        ];
+
+        return $translations[$status] ?? $status;
     }
 }

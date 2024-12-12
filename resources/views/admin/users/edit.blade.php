@@ -37,7 +37,20 @@
                     <option value="admin" {{ $user->role == 'admin' ? 'selected' : '' }}>Admin</option>
                 </select>
             </div>
+            <div class="form-group">
+                <label for="full_name">Họ và tên đầy đủ</label>
+                <input type="text" class="form-control" id="full_name" name="full_name" value="{{ $user->full_name }}">
+            </div>
+            <div class="form-group">
+                <label for="phone">Số điện thoại</label>
+                <input type="text" class="form-control" id="phone" name="phone" value="{{ $user->phone }}">
+            </div>
+            <div class="form-group">
+                <label for="address">Địa chỉ</label>
+                <textarea class="form-control" id="address" name="address">{{ $user->address }}</textarea>
+            </div>
             <button type="submit" class="btn btn-primary">Lưu</button>
         </form>
     </div>
-
+</body>
+</html>

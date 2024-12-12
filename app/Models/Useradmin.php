@@ -1,8 +1,6 @@
 <?php
-
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -10,19 +8,22 @@ use Laravel\Sanctum\HasApiTokens;
 
 class Useradmin extends Authenticatable
 {
-    use Notifiable;
+    use HasApiTokens, HasFactory, Notifiable;
+
+    // Định nghĩa bảng được liên kết với mô hình
     protected $table = 'users';
+
     /**
-     * The attributes that are mass assignable.
+     * Các thuộc tính có thể gán hàng loạt.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'role',
-    ];  
+        'name', 'email', 'password', 'role', 'full_name', 'phone', 'address', 'remember_token',
+    ];
 
     /**
-     * The attributes that should be hidden for arrays.
+     * Các thuộc tính cần ẩn cho mảng.
      *
      * @var array
      */
@@ -31,7 +32,7 @@ class Useradmin extends Authenticatable
     ];
 
     /**
-     * The attributes that should be cast to native types.
+     * Các thuộc tính cần chuyển đổi sang kiểu dữ liệu gốc.
      *
      * @var array
      */
@@ -40,9 +41,10 @@ class Useradmin extends Authenticatable
     ];
 
     /**
-     * Check if the user has admin role.
+     * Kiểm tra nếu người dùng có vai trò admin.
      *
      * @return bool
      */
-
+    
 }
+?>

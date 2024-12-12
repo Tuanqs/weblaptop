@@ -27,50 +27,65 @@ class UserController extends Controller
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8|confirmed',
             'role' => 'required|in:user,admin',
+            'full_name' => 'nullable|string|max:255',
+            'phone' => 'nullable|string|max:20',
+            'address' => 'nullable|string|max:255',
         ]);
 
-        User::create([
+        Useradmin::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'role' => $request->role,
+            'full_name' => $request->full_name,
+            'phone' => $request->phone,
+            'address' => $request->address,
         ]);
 
-        return redirect()->route('users.index')->with('success', 'Người dùng đã được tạo thành công.');
+        return redirect()->route('admin.users.index')->with('success', 'Người dùng đã được tạo thành công.');
     }
 
-    public function edit(User $user)
+    public function edit(Useradmin $user)
     {
         return view('admin.users.edit', compact('user'));
     }
 
-    public function update(Request $request, User $user)
+    public function update(Request $request, Useradmin $user)
     {
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users,email,'.$user->id,
             'password' => 'nullable|string|min:8|confirmed',
             'role' => 'required|in:user,admin',
+            'full_name' => 'nullable|string|max:255',
+            'phone' => 'nullable|string|max:20',
+            'address' => 'nullable|string|max:255',
         ]);
 
-        $user->update([
+        // Chuẩn bị dữ liệu cập nhật
+        $updateData = [
             'name' => $request->name,
             'email' => $request->email,
             'role' => $request->role,
-        ]);
+            'full_name' => $request->full_name,
+            'phone' => $request->phone,
+            'address' => $request->address,
+        ];
 
+        // Kiểm tra và cập nhật mật khẩu nếu có
         if ($request->filled('password')) {
-            $user->update([
-                'password' => Hash::make($request->password),
-            ]);
+            $updateData['password'] = Hash::make($request->password);
         }
 
-        return redirect()->route('users.index')->with('success', 'Thông tin người dùng đã được cập nhật.');
+        // Cập nhật thông tin người dùng
+        $user->update($updateData);
+
+        return redirect()->route('admin.users.index')->with('success', 'Thông tin người dùng đã được cập nhật.');
     }
 
-    public function destroy(User $user)
+    public function destroy(Useradmin $user)
     {
         $user->delete();
-        return redirect()->route('users.index')->with('success', 'Người dùng đã được xóa.');
+        return redirect()->route('admin.users.index')->with('success', 'Người dùng đã được xóa.');
     }
 }
