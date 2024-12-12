@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 **Cách cài đặt**
 
 - Tải và cài đặt Visual Studio Code (VSCode)
@@ -32,3 +33,6 @@
 **Tài khoản Admin**
 - Tài khoản: admin@gmail.com
 - Mật khẩu: admin
+=======
+# weblaptop
+>>>>>>> 32c6fbd1a71e4aacaae1d8bbe7a5f707b76a101f
